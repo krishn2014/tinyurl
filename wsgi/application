@@ -1,0 +1,28 @@
+#!/usr/bin/python
+import os, sys
+
+try:
+   sys.path.insert(0, os.path.dirname(__file__) or '.')
+   
+   sys.path.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'project'))
+
+   virtenv = os.path.join(os.environ['OPENSHIFT_PYTHON_DIR'] + 'virtenv')
+
+   PY_CACHE = os.path.join(virtenv, 'lib', 'python' + os.environ['OPENSHIFT_PYTHON_VERSION'], 'site-packages')
+
+   os.environ['PYTHON_EGG_CACHE'] = os.path.join(PY_CACHE)
+   os.environ['DJANGO_SETTINGS_MODULE'] = 'project.settings'
+
+   zvirtenv = os.path.join(virtenv, 'bin', 'activate_this.py')
+
+   exec(compile(open(zvirtenv).read(), zvirtenv, 'exec'), dict(__file__ = zvirtenv) )
+except IOError:
+   pass
+
+#
+# IMPORTANT: Put any additional includes below this line.  If placed above this
+# line, it's possible required libraries won't be in your searchable path
+#
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()

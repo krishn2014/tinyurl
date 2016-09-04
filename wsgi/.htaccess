@@ -1,0 +1,2 @@
+RewriteEngine on 
+RewriteRule ^application/static/(.+)$ /static/$1 [L]
