@@ -38,7 +38,7 @@ if ON_OPENSHIFT:
     DEBUG = False
 else:
     DEBUG = True
-
+DEBUG = True
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 if ON_OPENSHIFT:
