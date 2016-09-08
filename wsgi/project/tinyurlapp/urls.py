@@ -1,4 +1,4 @@
-"""project URL Configuration
+"""App URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -15,14 +15,14 @@ Including another URLconf
 from django.conf.urls import include, url
 # from django.contrib import admin
 
-from views import root_page
+from views import *
+
+# Wire up our API using automatic URL routing.
 
 urlpatterns = [
-    # url(r'^admin/', include(admin.site.urls)),
-
     # home url
-    url(r'^$',root_page),    
+    # url(r'^$',root_page),    
 
     # grouped urls
-    url(r'', include('tinyurlapp.urls')),    
+    url(r'^tinyurl/$', post_new, name='post_new'),
 ]

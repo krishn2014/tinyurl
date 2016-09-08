@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h3>Enter your url you like to shorten</h3>
+    <form method="POST"  class="form-horizontal" role="form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
