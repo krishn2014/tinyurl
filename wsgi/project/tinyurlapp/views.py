@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
+from django.http import HttpResponseRedirect
 
 # importing models
 from models import *
@@ -7,8 +8,8 @@ from models import *
 # Create your views here.
 
 # Django REST framework
-from django.utils import timezone
-from django.contrib.auth.models import User, Group
+# from django.utils import timezone
+# from django.contrib.auth.models import User, Group
 
 from django import forms
 
@@ -39,3 +40,10 @@ def post_new(request):
     else:
         form = TinyurlForm()
     return render(request, 'tinyurl.html', {'form': form, 'url': url, 'tinyurl': tinyurl})
+
+def tinyurl_view(request, digest):
+    try:
+        url = Tinyurl.objects.get(tiny=digest).url
+        return HttpResponseRedirect(url)
+    except:
+        raise Http404

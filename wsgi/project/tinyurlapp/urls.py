@@ -25,4 +25,5 @@ urlpatterns = [
 
     # grouped urls
     url(r'^tinyurl/$', post_new, name='post_new'),
+    url(r'^(?P<digest>\w.+)/$', tinyurl_view, name='tinyurl_view'),
 ]
